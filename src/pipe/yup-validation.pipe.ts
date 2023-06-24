@@ -37,10 +37,9 @@ export class YupValidationPipe implements PipeTransform {
     if (!schema) return value;
 
     try {
-      await (schema as Schema).validate(value, this.validationOptions);
+      return await (schema as Schema).validate(value, this.validationOptions);
     } catch (err) {
       throw new BadRequestException(serializeValidationError(err as any));
     }
-    return value;
   }
 }
